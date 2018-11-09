@@ -47,7 +47,11 @@ public class Controller : MonoBehaviour {
         {
             zeroG.Reset();
         }
-        motor.Move(movementSpeed);
+        if (!zeroG.inZeroG)
+        {
+            motor.Move(movementSpeed);
+        }
+
     }
 
 }
