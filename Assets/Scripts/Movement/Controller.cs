@@ -34,7 +34,8 @@ public class Controller : MonoBehaviour {
     //FixedUpdate - Physics
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        
+        if (Input.GetKeyDown( KeyCode.Space) && isGrounded)
         {
             motor.Jump(jumpSpeed);
             isGrounded = false;
@@ -47,10 +48,9 @@ public class Controller : MonoBehaviour {
         {
             zeroG.Reset();
         }
-        if (!zeroG.inZeroG)
-        {
-            motor.Move(movementSpeed);
-        }
+        motor.Move(movementSpeed);
+        Debug.Log(isGrounded);
+
 
     }
 

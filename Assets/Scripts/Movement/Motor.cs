@@ -22,7 +22,7 @@ public class Motor : MonoBehaviour {
         Vector3 moveVertical = transform.forward * z;
 
         velocity = (moveHorizontal + moveVertical).normalized * movementSpeed;
-    }
+    } 
     private void DoMovement(Vector3 velocity)
     {
         if (velocity != Vector3.zero){
@@ -31,6 +31,6 @@ public class Motor : MonoBehaviour {
     }
     public void Jump(float jumpSpeed)
     {
-        rb.AddForce(new Vector3(0, jumpSpeed, 0f), ForceMode.Impulse);
+        rb.AddForce(new Vector3(0f, jumpSpeed, 0f), ForceMode.Impulse);
     }
 }
