@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Motor))]
 [RequireComponent(typeof(ZeroG))]
-public class Controller : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private Motor motor;
     private CameraController cc;
@@ -49,7 +49,6 @@ public class Controller : MonoBehaviour {
             zeroG.Reset();
         }
         motor.Move(movementSpeed);
-        Debug.Log(isGrounded);
 
 
     }
