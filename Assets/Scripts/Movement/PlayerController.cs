@@ -5,16 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Motor))]
 [RequireComponent(typeof(ZeroG))]
+/*
+ * This is the class for the controller for the player. It requires a motor (which does
+ * regular base movement on the ground), a ZeroG component (for hovering / flying) and a rigidbody for all
+ * physics calculations. Here is where we assign the keys that controls our game component.
+ */
 public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private Motor motor;
-    private CameraController cc;
     public float jumpSpeed;
     public float movementSpeed;
     private bool isGrounded;
 
     private ZeroG zeroG;
     //number of jumps allowed
+    //TODO - implement
     public int numberOfJumps;
 
 	// Use this for initialization
@@ -26,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    //Don't allow double jump, not working
+    
     void OnCollisionStay (Collision collision) {
         isGrounded = true;
     }
@@ -34,23 +39,27 @@ public class PlayerController : MonoBehaviour {
     //FixedUpdate - Physics
     void FixedUpdate()
     {
-        
-        if (Input.GetKeyDown( KeyCode.Space) && isGrounded)
+        //jump
+        if (Input.GetButton("Jump") && isGrounded)
         {
             motor.Jump(jumpSpeed);
             isGrounded = false;
         }
+        //start zero G
         if (Input.GetKeyDown(KeyCode.E))
         {
             zeroG.MoveInZeroG();
         }
+        //stop zero g (fall)
         if (Input.GetKeyDown(KeyCode.F))
         {
             zeroG.Reset();
         }
-        motor.Move(movementSpeed);
-
-
+        //all movement that's not in ZeroG.
+        if (!zeroG.inZeroG)
+        {
+            motor.Move(movementSpeed);
+        }
     }
 
 }
